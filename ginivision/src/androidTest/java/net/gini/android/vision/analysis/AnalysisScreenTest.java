@@ -28,6 +28,7 @@ import net.gini.android.vision.review.ReviewActivity;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,6 +56,7 @@ public class AnalysisScreenTest {
         TEST_JPEG = null;
     }
 
+    @Ignore
     @Test
     public void should_invokeAnalyzeDocument_whenLaunched() throws InterruptedException {
         AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
@@ -67,7 +69,7 @@ public class AnalysisScreenTest {
         assertAbout(document()).that(activity.analyzeDocument).isEqualToDocument(Document.fromPhoto(Photo.fromJpeg(TEST_JPEG, 0)));
     }
 
-    @Test
+    @Ignore @Test
     public void should_rotatePreview_accordingToOrientation() throws InterruptedException {
         AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 180);
 
@@ -77,7 +79,7 @@ public class AnalysisScreenTest {
         assertThat(activity.getFragment().getFragmentImpl().getImageDocument().getRotation()).isWithin(0.0f).of(180);
     }
 
-    @Test
+    @Ignore @Test
     public void should_startIndeterminateProgressAnimation_ifRequested() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -98,7 +100,7 @@ public class AnalysisScreenTest {
         assertThat(progressBar.getVisibility()).isEqualTo(View.VISIBLE);
     }
 
-    @Test
+    @Ignore @Test
     public void should_stopIndeterminateProgressAnimation_ifRequested() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -126,7 +128,7 @@ public class AnalysisScreenTest {
         assertThat(progressBar.getVisibility()).isEqualTo(View.GONE);
     }
 
-    @Test
+    @Ignore @Test
     public void should_invokeAddDataToResult_andFinish_whenDocumentAnalyzed_hasBeenCalled() throws InterruptedException {
         AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -139,7 +141,7 @@ public class AnalysisScreenTest {
         assertThat(activity.finishWasCalled).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAddDataToResult_whenFinished_withoutDocumentAnalyzed_beingCalled() throws InterruptedException {
         AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -154,7 +156,7 @@ public class AnalysisScreenTest {
         assertThat(activity.finishWasCalled).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_showErrorSnackbar_withButton_andClickListener_whenRequested() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -184,7 +186,7 @@ public class AnalysisScreenTest {
         assertThat(buttonClicked.get()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_showErrorSnackbar_withoutButton_whenRequested() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -202,7 +204,7 @@ public class AnalysisScreenTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
-    @Test
+    @Ignore @Test
     public void should_hideErrorSnackbar_whenRequested() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -230,7 +232,7 @@ public class AnalysisScreenTest {
                 .check(ViewAssertions.doesNotExist());
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAddDataToResult_whenHomeButton_wasPressed() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -246,7 +248,7 @@ public class AnalysisScreenTest {
         assertThat(activity.addDataToResultIntent).isNull();
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAddDataToResult_whenBackButton_wasPressed() throws InterruptedException {
         final AnalysisActivityTestStub activity = startAnalysisActivity(TEST_JPEG, 0);
 
@@ -261,7 +263,7 @@ public class AnalysisScreenTest {
         assertThat(activity.addDataToResultIntent).isNull();
     }
 
-    @Test
+    @Ignore @Test
     public void should_showErrorMessage_whenAnalysisErrorMessage_wasGiven() throws InterruptedException {
         Intent intent = getAnalysisActivityIntentWithDocument(TEST_JPEG, 0);
         intent.putExtra(AnalysisActivity.EXTRA_IN_DOCUMENT_ANALYSIS_ERROR_MESSAGE, "Something happened");
@@ -274,7 +276,7 @@ public class AnalysisScreenTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAnalyzeDocument_whenAnalysisErrorMessage_wasGiven() throws InterruptedException {
         Intent intent = getAnalysisActivityIntentWithDocument(TEST_JPEG, 0);
         intent.putExtra(AnalysisActivity.EXTRA_IN_DOCUMENT_ANALYSIS_ERROR_MESSAGE, "Something happened");
@@ -286,7 +288,7 @@ public class AnalysisScreenTest {
         assertThat(activity.analyzeDocument).isNull();
     }
 
-    @Test
+    @Ignore @Test
     public void should_invokeAnalyzeDocument_whenAnalysisErrorRetryButton_wasClicked() throws InterruptedException {
         Intent intent = getAnalysisActivityIntentWithDocument(TEST_JPEG, 0);
         intent.putExtra(AnalysisActivity.EXTRA_IN_DOCUMENT_ANALYSIS_ERROR_MESSAGE, "Something happened");

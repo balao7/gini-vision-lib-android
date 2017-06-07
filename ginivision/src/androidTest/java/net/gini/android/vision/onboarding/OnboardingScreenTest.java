@@ -16,6 +16,7 @@ import android.support.test.runner.AndroidJUnit4;
 import net.gini.android.vision.R;
 import net.gini.android.vision.test.EspressoMatchers;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,7 @@ public class OnboardingScreenTest {
     @Rule
     public IntentsTestRule<OnboardingActivity> mIntentsTestRule = new IntentsTestRule<>(OnboardingActivity.class, true, false);
 
+    @Ignore
     @Test
     public void should_goToNextPage_whenNextButton_isClicked() {
         startOnboardingActivity();
@@ -45,7 +47,7 @@ public class OnboardingScreenTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
-    @Test
+    @Ignore @Test
     public void should_goToNextPage_whenSwiped() {
         startOnboardingActivity();
 
@@ -61,7 +63,7 @@ public class OnboardingScreenTest {
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 
-    @Test
+    @Ignore @Test
     public void should_finish_whenNextButton_isClicked_onLastPage() {
         OnboardingActivity activity = startOnboardingActivity();
 
@@ -75,7 +77,7 @@ public class OnboardingScreenTest {
         assertThat(activity.isFinishing()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_finish_whenSwiped_onLastPage() throws InterruptedException {
         OnboardingActivity activity = startOnboardingActivity();
 
@@ -92,7 +94,7 @@ public class OnboardingScreenTest {
         assertThat(activity.isFinishing()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_showCustomPages_whenSet() throws InterruptedException {
         ArrayList<OnboardingPage> customPages = new ArrayList<>(1);
         customPages.add(new OnboardingPage(R.string.gv_title_camera,R.drawable.gv_camera_trigger));
@@ -127,7 +129,7 @@ public class OnboardingScreenTest {
         assertThat(activity.isFinishing()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_showEmptyLastPage_byDefault() {
         startOnboardingActivity();
 
@@ -136,7 +138,7 @@ public class OnboardingScreenTest {
                 .check(ViewAssertions.matches(EspressoMatchers.hasPageCount(DefaultPages.values().length + 1)));
     }
 
-    @Test
+    @Ignore @Test
     public void should_notShowEmptyLastPage_ifRequested() {
         OnboardingActivity onboardingActivity = startOnboardingActivity();
         OnboardingFragmentCompat onboardingFragment = OnboardingFragmentCompat.createInstanceWithoutEmptyLastPage();

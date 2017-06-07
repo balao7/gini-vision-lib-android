@@ -10,12 +10,14 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.LinearLayout;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class PageIndicatorsTest {
 
+    @Ignore
     @Test
     public void should_createPageIndicatorImageViews() {
         OnboardingFragmentImpl.PageIndicators pageIndicators = createPageIndicatorsInstance(2);
@@ -23,7 +25,7 @@ public class PageIndicatorsTest {
         assertThat(pageIndicators.getPageIndicators().size()).isEqualTo(2);
     }
 
-    @Test
+    @Ignore @Test
     public void should_setActiveRequiredPageIndicator() {
         OnboardingFragmentImpl.PageIndicators pageIndicators = createPageIndicatorsInstance(2);
         pageIndicators.setActive(0);

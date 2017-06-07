@@ -13,6 +13,7 @@ import net.gini.android.vision.Document;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,6 +35,7 @@ public class PhotoTest {
         TEST_JPEG = null;
     }
 
+    @Ignore
     @Test
     public void should_supportParceling() {
         // Given
@@ -44,7 +46,7 @@ public class PhotoTest {
         assertThat(photoFromParcel).isEqualTo(photo);
     }
 
-    @Test
+    @Ignore @Test
     public void should_keepUserComment_whenCreating_fromDocument() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -54,7 +56,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasSameUserCommentAs(fromDocument);
     }
 
-    @Test
+    @Ignore @Test
     public void should_setContentIdFromUserComment_whenCreating_fromDocument() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -64,7 +66,7 @@ public class PhotoTest {
         assertThat(photo.getContentId()).isEqualTo(fromDocument.getContentId());
     }
 
-    @Test
+    @Ignore @Test
     public void should_setRotationDeltafromUserComment_whenCreating_fromDocument() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -75,7 +77,7 @@ public class PhotoTest {
         assertThat(photo.getRotationDelta()).isEqualTo(fromDocument.getRotationDelta());
     }
 
-    @Test
+    @Ignore @Test
     public void should_generateUUID_forContentId_whenCreated() {
         // When
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -83,7 +85,7 @@ public class PhotoTest {
         assertThat(UUID.fromString(photo.getContentId())).isNotNull();
     }
 
-    @Test
+    @Ignore @Test
     public void should_generate_uniqueContentIds_forEachInstance() {
         // Given
         Photo photo1 = Photo.fromJpeg(TEST_JPEG, 0);
@@ -92,7 +94,7 @@ public class PhotoTest {
         assertThat(photo1.getContentId()).isNotEqualTo(photo2.getContentId());
     }
 
-    @Test
+    @Ignore @Test
     public void should_addContentId_toExifUserComment() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -100,7 +102,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasContentIdInUserComment(photo.getContentId());
     }
 
-    @Test
+    @Ignore @Test
     public void should_keepContentId_afterRotation() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -111,7 +113,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasContentIdInUserComment(contentId);
     }
 
-    @Test
+    @Ignore @Test
     public void should_keepContentId_afterCompression() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -122,7 +124,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasContentIdInUserComment(contentId);
     }
 
-    @Test
+    @Ignore @Test
     public void should_initRotationDelta_whenCreated() {
         // When
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -130,7 +132,7 @@ public class PhotoTest {
         assertThat(photo.getRotationDelta()).isEqualTo(0);
     }
 
-    @Test
+    @Ignore @Test
     public void should_initRotationDelta_whenCreated_withNonZeroOrientation() {
         // When
         Photo photo = Photo.fromJpeg(TEST_JPEG, 90);
@@ -138,7 +140,7 @@ public class PhotoTest {
         assertThat(photo.getRotationDelta()).isEqualTo(0);
     }
 
-    @Test
+    @Ignore @Test
     public void should_addRotationDelta_toExifUserComment() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -146,7 +148,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasRotationDeltaInUserComment(0);
     }
 
-    @Test
+    @Ignore @Test
     public void should_updateRotationDelta_afterCWRotation() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -156,7 +158,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasRotationDeltaInUserComment(90);
     }
 
-    @Test
+    @Ignore @Test
     public void should_updateRotationDelta_afterCCWRotation() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -166,7 +168,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasRotationDeltaInUserComment(270);
     }
 
-    @Test
+    @Ignore @Test
     public void should_normalizeRotationDelta_forCWRotation() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -176,7 +178,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasRotationDeltaInUserComment(90);
     }
 
-    @Test
+    @Ignore @Test
     public void should_normalizeRotationDelta_forCCWRotation() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 0);
@@ -186,7 +188,7 @@ public class PhotoTest {
         assertAbout(photo()).that(photo).hasRotationDeltaInUserComment(90);
     }
 
-    @Test
+    @Ignore @Test
     public void should_keepRotationDelta_afterCompression() {
         // Given
         Photo photo = Photo.fromJpeg(TEST_JPEG, 90);

@@ -14,6 +14,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,7 @@ public class ErrorSnackbarTest {
     @Rule
     public ActivityTestRule<ErrorSnackbarTestActivity> mActivityTestRule = new ActivityTestRule<>(ErrorSnackbarTestActivity.class);
 
+    @Ignore
     @Test
     public void should_showErrorSnackbar() throws InterruptedException {
         showErrorSnackbar("Test message", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
@@ -35,7 +37,7 @@ public class ErrorSnackbarTest {
         assertErrorSnackbarIsShown("Test message", null);
     }
 
-    @Test
+    @Ignore @Test
     public void should_hideErrorSnackbar() throws InterruptedException {
         final ErrorSnackbar errorSnackbar = showErrorSnackbar("Test message", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
 
@@ -46,7 +48,7 @@ public class ErrorSnackbarTest {
         assertErrorSnackbarIsHidden("Test message", null);
     }
 
-    @Test
+    @Ignore @Test
     public void should_hidePreviousErrorSnackbar_whenShowingANewOne_inTheSameLayout() throws InterruptedException {
         showErrorSnackbar("Test message 1", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
 
@@ -58,7 +60,7 @@ public class ErrorSnackbarTest {
         assertErrorSnackbarIsShown("Test message 2", null);
     }
 
-    @Test
+    @Ignore @Test
     public void should_showMultipleErrorSnackbars_inDifferentLayouts() throws InterruptedException {
         showErrorSnackbar("Test message 1", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
 
@@ -72,7 +74,7 @@ public class ErrorSnackbarTest {
         assertErrorSnackbarIsShown("Test message 2", null);
     }
 
-    @Test
+    @Ignore @Test
     public void should_hideErrorSnackbar_forAGivenLayout() throws InterruptedException {
         showErrorSnackbar("Test message 1", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
 
@@ -93,7 +95,7 @@ public class ErrorSnackbarTest {
         assertErrorSnackbarIsHidden("Test message 1", null);
     }
 
-    @Test
+    @Ignore @Test
     public void should_notShowButton_ifButtonTitle_wasNotGiven() throws InterruptedException {
         showErrorSnackbar("Test message", null, null, ErrorSnackbar.LENGTH_INDEFINITE);
 
@@ -103,14 +105,14 @@ public class ErrorSnackbarTest {
                 .check(ViewAssertions.doesNotExist());
     }
 
-    @Test
+    @Ignore @Test
     public void should_showButton_ifButtonTitle_wasGiven() throws InterruptedException {
         showErrorSnackbar("Test message", "Button title", null, ErrorSnackbar.LENGTH_INDEFINITE);
 
         assertErrorSnackbarIsShown("Test message", "Button title");
     }
 
-    @Test
+    @Ignore @Test
     public void should_setClickListener_forButton_ifClickListener_wasGiven_andButtonTitle_wasGiven() throws InterruptedException {
         final AtomicBoolean buttonClicked = new AtomicBoolean();
         showErrorSnackbar("Test message", "Button title", new View.OnClickListener() {

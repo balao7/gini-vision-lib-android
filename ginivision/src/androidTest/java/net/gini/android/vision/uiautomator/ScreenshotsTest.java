@@ -47,7 +47,7 @@ public class ScreenshotsTest {
         mDevice.pressHome();
     }
 
-    @Test
+    @Ignore @Test
     public void screenApiExample_takeScreenshot_fromCameraScreen_andReviewScreen()
             throws InterruptedException, UiObjectNotFoundException {
         grantCameraPermission(SCREEN_API_EXAMPLE_APP);

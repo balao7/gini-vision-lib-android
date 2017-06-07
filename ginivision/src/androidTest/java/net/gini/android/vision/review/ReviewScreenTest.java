@@ -32,6 +32,7 @@ import net.gini.android.vision.analysis.AnalysisActivityTestStub;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +64,7 @@ public class ReviewScreenTest {
         TEST_JPEG = null;
     }
 
+    @Ignore
     @Test(expected = IllegalStateException.class)
     public void should_throwException_whenAnalysisActivityClass_wasNotGiven() {
         prepareLooper();
@@ -74,7 +76,7 @@ public class ReviewScreenTest {
         reviewActivity.readExtras();
     }
 
-    @Test
+    @Ignore @Test
     public void should_rotatePreview_accordingToOrientation() throws IOException, InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 180);
 
@@ -98,7 +100,7 @@ public class ReviewScreenTest {
         return intent;
     }
 
-    @Test
+    @Ignore @Test
     public void should_rotatePreview_whenRotateButton_isClicked() throws IOException, InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 90);
 
@@ -111,7 +113,7 @@ public class ReviewScreenTest {
         assertThat(activity.getFragment().getFragmentImpl().getImageDocument().getRotation()).isWithin(0.0f).of(180);
     }
 
-    @Test
+    @Ignore @Test
     public void should_invokeAnalyzeDocument_whenLaunched() throws IOException, InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 90);
 
@@ -130,7 +132,7 @@ public class ReviewScreenTest {
         assertThat(analyzeDocumentInvoked.get()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_compressJpeg_beforeAnalyzeDocument_isInvoked() throws IOException, InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 90);
 
@@ -150,7 +152,7 @@ public class ReviewScreenTest {
         assertThat(documentToAnalyze.get().getJpeg().length).isLessThan(TEST_JPEG.length);
     }
 
-    @Test
+    @Ignore @Test
     public void should_onlyInvokeProceedToAnalysis_whenNextButton_wasClicked_ifDocument_wasModified_andNotAnalyzed() throws InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -184,7 +186,7 @@ public class ReviewScreenTest {
         assertThat(addDataToResultInvoked.get()).isFalse();
     }
 
-    @Test
+    @Ignore @Test
     public void should_onlyInvokeProceedToAnalysis_whenNextButton_wasClicked_ifDocument_wasModified_andAnalyzed() throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -224,7 +226,7 @@ public class ReviewScreenTest {
         assertThat(addDataToResultInvoked.get()).isFalse();
     }
 
-    @Test
+    @Ignore @Test
     public void should_onlyInvokeProceedToAnalysis_whenNextButton_wasClicked_ifDocument_wasNotModified_andNotAnalyzed() throws InterruptedException {
         ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -254,7 +256,7 @@ public class ReviewScreenTest {
         assertThat(addDataToResultInvoked.get()).isFalse();
     }
 
-    @Test
+    @Ignore @Test
     public void should_invokeDocumentReviewed_andAddDataToResult_whenNextButton_wasClicked_ifDocument_wasNotModified_andWasAnalyzed() throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -290,7 +292,7 @@ public class ReviewScreenTest {
         assertThat(addDataToResultInvoked.get()).isTrue();
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAnyListenerMethods_whenHomeButton_wasClicked() throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -312,7 +314,7 @@ public class ReviewScreenTest {
         verify(listenerHook, never()).onProceedToAnalysisScreen(any(Document.class));
     }
 
-    @Test
+    @Ignore @Test
     public void should_notInvokeAnyListenerMethods_whenBackButton_wasClicked() throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -333,7 +335,7 @@ public class ReviewScreenTest {
         verify(listenerHook, never()).onProceedToAnalysisScreen(any(Document.class));
     }
 
-    @Test
+    @Ignore @Test
     public void should_invokeDocumentWasRotated_whenRotateButton_wasClicked() throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 0);
 
@@ -349,7 +351,7 @@ public class ReviewScreenTest {
         verify(listenerHook).onDocumentWasRotated(any(Document.class), eq(0), eq(90));
     }
 
-    @Test
+    @Ignore @Test
     public void should_notFinish_whenReceivingActivityResult_withResultCodeCancelled_fromAnalysisActivity() {
         prepareLooper();
 
@@ -361,7 +363,7 @@ public class ReviewScreenTest {
         verify(reviewActivitySpy, never()).finish();
     }
 
-    @Test
+    @Ignore @Test
     public void should_finishIfEnabledByClient_whenReceivingActivityResult_withResultCodeCancelled_fromAnalysisActivity() {
         prepareLooper();
 
@@ -381,7 +383,7 @@ public class ReviewScreenTest {
         verify(reviewActivitySpy).finish();
     }
 
-    @Test
+    @Ignore @Test
     public void should_returnDocuments_withSameContentId_inAnalyzeDocument_andProceedToAnalysis()
             throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 90);
@@ -416,7 +418,7 @@ public class ReviewScreenTest {
                 documentToProceedWith.get());
     }
 
-    @Test
+    @Ignore @Test
     public void should_returnDocument_withZeroRotationDelta_inAnalyzeDocument()
             throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 180);
@@ -436,7 +438,7 @@ public class ReviewScreenTest {
         assertAbout(document()).that(documentToAnalyze.get()).hasRotationDeltaInUserComment(0);
     }
 
-    @Test
+    @Ignore @Test
     public void should_returnDocument_withNonZeroRotationDelta_inProceedToAnalysis_ifDocumentWasRotated()
             throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 270);
@@ -464,7 +466,7 @@ public class ReviewScreenTest {
         assertAbout(document()).that(documentToProceedWith.get()).hasRotationDeltaInUserComment(90);
     }
 
-    @Test
+    @Ignore @Test
     public void should_returnDocument_withCumulatedRotationDelta_inProceedToAnalysis_ifDocumentWasRotatedMultipleTimes()
             throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 180);
@@ -495,7 +497,7 @@ public class ReviewScreenTest {
         assertAbout(document()).that(documentToProceedWith.get()).hasRotationDeltaInUserComment(180);
     }
 
-    @Test
+    @Ignore @Test
     public void should_returnDocument_withNormalizedRotationDelta_inProceedToAnalysis_ifDocumentWasRotatedBeyond360Degrees()
             throws InterruptedException {
         final ReviewActivityTestStub activity = startReviewActivity(TEST_JPEG, 90);

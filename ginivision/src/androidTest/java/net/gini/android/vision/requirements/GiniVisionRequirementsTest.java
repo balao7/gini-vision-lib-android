@@ -8,7 +8,6 @@ import android.hardware.Camera;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,7 +21,6 @@ public class GiniVisionRequirementsTest {
 
     // Intended to gather requirement reports from devices.
     // This test should be ignored normally.
-    @Ignore
     @Test
     public void should_fulfillRequirements() throws InterruptedException {
         grantCameraPermission();
