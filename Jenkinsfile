@@ -28,7 +28,25 @@ pipeline {
                 }
             }
         }
-        stage('Instrumentation Tests') {
+        stage('Instrumentation Tests - API Level 25') {
+            steps {
+                withEnv(["PATH+TOOLS=$ANDROID_HOME/tools", "PATH+TOOLS_BIN=$ANDROID_HOME/tools/bin", "PATH+PLATFORM_TOOLS=$ANDROID_HOME/platform-tools"]) {
+                    sh 'scripts/start-emulator.sh mobilecd_android-25_google_apis-x86_512M -prop persist.sys.language=en -prop persist.sys.country=US -gpu swiftshader -camera-back emulated > emulator_port'
+                    sh 'emulator_port=$(cat emulator_port) && scripts/wait-for-emulator-to-boot.sh emulator-$emulator_port 20'
+                    sh 'emulator_port=$(cat emulator_port) && ./gradlew ginivision:targetedDebugAndroidTest -PpackageName=net.gini.android.vision -PtestTarget=emulator-$emulator_port'
+                }
+            }
+            post {
+                always {
+                    junit allowEmptyResults: true, testResults: 'ginivision/build/outputs/androidTest-results/targeted/*.xml'
+                    withEnv(["PATH+PLATFORM_TOOLS=$ANDROID_HOME/platform-tools"]) {
+                        sh 'emulator_port=$(cat emulator_port) && adb -s emulator-$emulator_port emu kill || true'
+                    }
+                    sh 'rm emulator_port || true'
+                }
+            }
+        }
+        stage('Instrumentation Tests - API Level 26') {
             steps {
                 withEnv(["PATH+TOOLS=$ANDROID_HOME/tools", "PATH+TOOLS_BIN=$ANDROID_HOME/tools/bin", "PATH+PLATFORM_TOOLS=$ANDROID_HOME/platform-tools"]) {
                     sh 'scripts/start-emulator.sh mobilecd_android-26_google_apis-x86_512M -prop persist.sys.language=en -prop persist.sys.country=US -gpu swiftshader -camera-back emulated > emulator_port'
